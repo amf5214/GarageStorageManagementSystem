@@ -1,6 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-using ConsoleApp1;
+using ParkingGarageStorageManagement;
 
 DbQueries query = new DbQueries(Constants.ConnDetails);
 Garage homeBase = query.GetGarage(Constants.GarageId);

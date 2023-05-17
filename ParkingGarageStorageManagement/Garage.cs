@@ -1,6 +1,6 @@
 using Microsoft.Extensions.Logging.Abstractions;
 
-namespace ConsoleApp1;
+namespace ParkingGarageStorageManagement;
 
 public class Garage
 {

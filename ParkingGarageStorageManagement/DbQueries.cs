@@ -1,7 +1,7 @@
 using System.Transactions;
 using MySql.Data.MySqlClient;
 
-namespace ConsoleApp1;
+namespace ParkingGarageStorageManagement;
 
 public class DbQueries : DbConnect
 {

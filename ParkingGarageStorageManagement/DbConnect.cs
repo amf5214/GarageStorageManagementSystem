@@ -1,7 +1,7 @@
 using MySql.Data.MySqlClient;
 using System;
 
-namespace ConsoleApp1;
+namespace ParkingGarageStorageManagement;
 
 public class DbConnect
 {
