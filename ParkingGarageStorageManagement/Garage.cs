@@ -1,5 +1,3 @@
-using Microsoft.Extensions.Logging.Abstractions;
-
 namespace ParkingGarageStorageManagement;
 
 public class Garage

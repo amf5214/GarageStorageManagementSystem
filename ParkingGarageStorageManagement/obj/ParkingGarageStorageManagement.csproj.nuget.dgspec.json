@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\fralaust\\RiderProjects\\ConsoleApp1\\ParkingGarageStorageManagement\\ParkingGarageStorageManagement.csproj": {}
+    "C:\\Users\\fralaust\\RiderProjects\\ParkingGarageStorageManagement\\ParkingGarageStorageManagement\\ParkingGarageStorageManagement.csproj": {}
   },
   "projects": {
-    "C:\\Users\\fralaust\\RiderProjects\\ConsoleApp1\\ParkingGarageStorageManagement\\ParkingGarageStorageManagement.csproj": {
+    "C:\\Users\\fralaust\\RiderProjects\\ParkingGarageStorageManagement\\ParkingGarageStorageManagement\\ParkingGarageStorageManagement.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\fralaust\\RiderProjects\\ConsoleApp1\\ParkingGarageStorageManagement\\ParkingGarageStorageManagement.csproj",
+        "projectUniqueName": "C:\\Users\\fralaust\\RiderProjects\\ParkingGarageStorageManagement\\ParkingGarageStorageManagement\\ParkingGarageStorageManagement.csproj",
         "projectName": "ParkingGarageStorageManagement",
-        "projectPath": "C:\\Users\\fralaust\\RiderProjects\\ConsoleApp1\\ParkingGarageStorageManagement\\ParkingGarageStorageManagement.csproj",
+        "projectPath": "C:\\Users\\fralaust\\RiderProjects\\ParkingGarageStorageManagement\\ParkingGarageStorageManagement\\ParkingGarageStorageManagement.csproj",
         "packagesPath": "C:\\Users\\fralaust\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\fralaust\\RiderProjects\\ConsoleApp1\\ParkingGarageStorageManagement\\obj\\",
+        "outputPath": "C:\\Users\\fralaust\\RiderProjects\\ParkingGarageStorageManagement\\ParkingGarageStorageManagement\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\fralaust\\AppData\\Roaming\\NuGet\\NuGet.Config"

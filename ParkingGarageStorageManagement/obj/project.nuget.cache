@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "jUSSpQeME2ggWDeHgRtlqjtmUnQCSvITcPmh2ErDYV44k7ZsBDkWdD/hJfCVgEpU9megu2/YR3v1B6ssNt4kGQ==",
+  "dgSpecHash": "DZtxsksUro0kiY/qyvMXcU84dIj1TvSXR8DBTNPAo+tAIDO8JL01g7Zq6wk3fvlipmJYtG8FK4oy3vrLyJByvA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\fralaust\\RiderProjects\\ConsoleApp1\\ParkingGarageStorageManagement\\ParkingGarageStorageManagement.csproj",
+  "projectFilePath": "C:\\Users\\fralaust\\RiderProjects\\ParkingGarageStorageManagement\\ParkingGarageStorageManagement\\ParkingGarageStorageManagement.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\fralaust\\.nuget\\packages\\google.protobuf\\3.21.9\\google.protobuf.3.21.9.nupkg.sha512",
     "C:\\Users\\fralaust\\.nuget\\packages\\k4os.compression.lz4\\1.3.5\\k4os.compression.lz4.1.3.5.nupkg.sha512",

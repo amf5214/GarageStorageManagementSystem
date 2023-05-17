@@ -1,4 +1,3 @@
-using System.Transactions;
 using MySql.Data.MySqlClient;
 
 namespace ParkingGarageStorageManagement;
@@ -14,7 +13,7 @@ public class DbQueries : DbConnect
     {
         if (OpenConnection())
         {
-            string query = $"select * from car where car_license_plate=\"{licensePlate}\";";
+            string query = $"select * from Car where car_license_plate=\"{licensePlate}\";";
             List<Car> cars = new List<Car>();
             MySqlCommand command = new MySqlCommand(query, Connection);
             MySqlDataReader reader = command.ExecuteReader();
@@ -42,7 +41,7 @@ public class DbQueries : DbConnect
     {
         if (OpenConnection())
         {
-            string query = $"select * from garage where garage_id=\"{garageId}\";";
+            string query = $"select * from Garage where garage_id=\"{garageId}\";";
             List<Garage> garages = new List<Garage>();
             MySqlCommand command = new MySqlCommand(query, Connection);
             MySqlDataReader reader = command.ExecuteReader();
