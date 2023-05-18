@@ -13,4 +13,12 @@
       <PackageReference Include="MySqlConnector" Version="2.3.0-beta.2" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Content Include="obj\Debug\net7.0\ParkingGarageStorageManagement.csproj.CoreCompileInputs.cache" />
+      <Content Include="obj\Debug\net7.0\ParkingGarageStorageManagement.csproj.FileListAbsolute.txt" />
+      <Content Include="obj\Debug\net7.0\ParkingGarageStorageManagement.dll" />
+      <Content Include="obj\Debug\net7.0\ParkingGarageStorageManagement.genruntimeconfig.cache" />
+      <Content Include="obj\Debug\net7.0\ParkingGarageStorageManagement.pdb" />
+    </ItemGroup>
+
 </Project>

@@ -1,10 +1,11 @@
 namespace ParkingGarageStorageManagement;
 
-public enum UserType
+public enum ParkingPassType
 {
     Visitor,
     Commutor,
     Resident,
     Faculty,
-    Facilities
+    Facilities,
+    None
 }

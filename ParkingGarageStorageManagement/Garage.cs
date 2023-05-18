@@ -13,7 +13,19 @@ public class Garage
     public int TotalSpaces { get; set; }
     public int CurrentOccupants { get; set; }
     public int PlanId { get; set; }
+    public List<ParkingPassType> AllowedUserTypes { get; set; }
 
+    public Garage(int garageId, string garageName, int addressId, int totalSpaces, int currentOccupants, int planId, List<ParkingPassType> allowedUserTypes)
+    {
+        GarageId = garageId;
+        GarageName = garageName;
+        AddressId = addressId;
+        TotalSpaces = totalSpaces;
+        CurrentOccupants = currentOccupants;
+        PlanId = planId;
+        AllowedUserTypes = allowedUserTypes;
+    }
+    
     public Garage(int garageId, string garageName, int addressId, int totalSpaces, int currentOccupants, int planId)
     {
         GarageId = garageId;
@@ -24,6 +36,25 @@ public class Garage
         PlanId = planId;
     }
 
+    public Garage(string garageName, int addressId, int totalSpaces, int currentOccupants, int planId, List<ParkingPassType> allowedUserTypes)
+    {
+        GarageName = garageName;
+        AddressId = addressId;
+        TotalSpaces = totalSpaces;
+        CurrentOccupants = currentOccupants;
+        PlanId = planId;
+    }
+    
+    public Garage(string garageName, int addressId, int totalSpaces, int currentOccupants, int planId, string allowedUserTypes)
+    {
+        GarageName = garageName;
+        AddressId = addressId;
+        TotalSpaces = totalSpaces;
+        CurrentOccupants = currentOccupants;
+        PlanId = planId;
+        AllowedUserTypes = ConvertJsonStringToList(allowedUserTypes);
+    }
+    
     public Garage(string garageName, int addressId, int totalSpaces, int currentOccupants, int planId)
     {
         GarageName = garageName;
@@ -75,4 +106,42 @@ public class Garage
 
         return null;
     }
+
+    public static List<ParkingPassType> ConvertJsonStringToList(string allowedUserTypes)
+    {
+        string[] types = (allowedUserTypes.Substring(2, allowedUserTypes.Length - 4)).Split(',');
+        List<ParkingPassType> garageTypes = new List<ParkingPassType>();
+        
+        foreach(string type in types)
+        {
+            Console.WriteLine(type);
+            ParkingPassType passType;
+            bool doesWork = ParkingPassType.TryParse(type.Substring(1, type.Length-2), out passType);
+            if (doesWork)
+            {
+                garageTypes.Add(passType);
+            }
+        }
+        
+        return garageTypes;
+    }
+
+    public static string ConvertParkingPassListToString(List<ParkingPassType> types)
+    {
+        string jsonString = "'[";
+        for (int i = 0; i < types.Count; i++)
+        {
+            jsonString += "\"";
+            ParkingPassType type = types[i];
+            jsonString += type.ToString() + "\"";
+            if (i != types.Count - 1)
+            {
+                jsonString += ",";
+            }
+        }
+        return (jsonString += "]'");
+        
+        
+    }
+    
 }

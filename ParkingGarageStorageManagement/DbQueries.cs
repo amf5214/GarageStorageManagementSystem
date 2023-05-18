@@ -47,7 +47,7 @@ public class DbQueries : DbConnect
             MySqlDataReader reader = command.ExecuteReader();
             while (reader.Read())
             {
-                garages.Add(new Garage(int.Parse(reader["garage_id"] + ""), reader["garage_name"] + "", int.Parse(reader["address_id"] + ""), int.Parse(reader["total_spaces"] + ""), int.Parse(reader["current_occupants"] + ""), int.Parse(reader["plan_id"] + "")));
+                garages.Add(new Garage(int.Parse(reader["garage_id"] + ""), reader["garage_name"] + "", int.Parse(reader["address_id"] + ""), int.Parse(reader["total_spaces"] + ""), int.Parse(reader["current_occupants"] + ""), int.Parse(reader["plan_id"] + ""),Garage.ConvertJsonStringToList(reader["allowed_user_types"]+ "")));
             }
             CloseConnection();
             if (garages.Count > 0)
@@ -126,5 +126,7 @@ public class DbQueries : DbConnect
             return null;
         }
     }
+
+    
 
 }

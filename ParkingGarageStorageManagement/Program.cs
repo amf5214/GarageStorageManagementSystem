@@ -14,6 +14,16 @@ Console.WriteLine(gateEvent3);
 Console.WriteLine(gateEvent4);
 
 Car car = new Car("Toyota", "4Runner", "Nightshade Green", "NGHTSH", 1, 1);
-car.CreateCar();
+// car.CreateCar();
+
+List<ParkingPassType> types = Garage.ConvertJsonStringToList("'[\"Visitor\",\"Commutor\"]'");
+foreach(ParkingPassType type in types)
+{
+    Console.WriteLine(type);
+}
+
+Console.WriteLine(Garage.ConvertParkingPassListToString(types));
+
+
 
 Console.ReadLine();
