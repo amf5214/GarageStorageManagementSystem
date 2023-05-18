@@ -73,9 +73,13 @@ public class Garage
     {
         DbQueries query = new DbQueries(Constants.ConnDetails);
         Car car = query.GetCarFromLicensePlate(licensePlate);
-        if (car != null)
+        ParkingPass pass = query.GetUserParkingPass(car.UserId);
+        if ((car != null) & (query.CheckIfUserIsAllowed(car.UserId, this)))
         {
+            Console.WriteLine("----------------------------------------------------");
             Console.WriteLine(car);
+            Console.WriteLine(pass);
+            Console.WriteLine("----------------------------------------------------");
             GateEvent gateEvent;
             if (isAdd)
             {
@@ -109,14 +113,13 @@ public class Garage
 
     public static List<ParkingPassType> ConvertJsonStringToList(string allowedUserTypes)
     {
-        string[] types = (allowedUserTypes.Substring(2, allowedUserTypes.Length - 4)).Split(',');
+        string[] types = (allowedUserTypes.Substring(1, allowedUserTypes.Length - 2)).Split(',');
         List<ParkingPassType> garageTypes = new List<ParkingPassType>();
         
         foreach(string type in types)
         {
-            Console.WriteLine(type);
             ParkingPassType passType;
-            bool doesWork = ParkingPassType.TryParse(type.Substring(1, type.Length-2), out passType);
+            bool doesWork = ParkingPassType.TryParse(type.Trim().Substring(1, type.Trim().Length-2), out passType);
             if (doesWork)
             {
                 garageTypes.Add(passType);
@@ -140,8 +143,6 @@ public class Garage
             }
         }
         return (jsonString += "]'");
-        
-        
     }
     
 }

@@ -1,4 +1,5 @@
 using MySql.Data.MySqlClient;
+using MySqlConnector.Logging;
 
 namespace ParkingGarageStorageManagement;
 
@@ -47,7 +48,9 @@ public class DbQueries : DbConnect
             MySqlDataReader reader = command.ExecuteReader();
             while (reader.Read())
             {
-                garages.Add(new Garage(int.Parse(reader["garage_id"] + ""), reader["garage_name"] + "", int.Parse(reader["address_id"] + ""), int.Parse(reader["total_spaces"] + ""), int.Parse(reader["current_occupants"] + ""), int.Parse(reader["plan_id"] + ""),Garage.ConvertJsonStringToList(reader["allowed_user_types"]+ "")));
+                string readerOutput = reader["allowed_user_types"] + "";
+                List<ParkingPassType> types = Garage.ConvertJsonStringToList(readerOutput);
+                garages.Add(new Garage(int.Parse(reader["garage_id"] + ""), reader["garage_name"] + "", int.Parse(reader["address_id"] + ""), int.Parse(reader["total_spaces"] + ""), int.Parse(reader["current_occupants"] + ""), int.Parse(reader["plan_id"] + ""), types));
             }
             CloseConnection();
             if (garages.Count > 0)
@@ -126,7 +129,69 @@ public class DbQueries : DbConnect
             return null;
         }
     }
+    
+    public ParkingPass CreateParkingPass(ParkingPass pass)
+    {
+        if (OpenConnection())
+        {
+            string query = $"insert into ParkingPass (pass_type, pass_user_id, pass_start_date, pass_expiration_date) values (\"{pass.Type.ToString()}\", {pass.UserId}, \"{pass.PassStartDate.ToString("yyyy-MM-dd")}\", \"{pass.PassExpirationDate.ToString("yyyy-MM-dd")}\");";
+            MySqlCommand command = new MySqlCommand(query, Connection);
+            command.ExecuteNonQuery();
+            long index = command.LastInsertedId;
+            pass.PassId = int.Parse(index + "");
+            CloseConnection();
+            return pass;
+        }
+        else
+        {
+            return null;
+        }
+    }
 
+    public ParkingPass GetUserParkingPass(int userId)
+    {
+        if (OpenConnection())
+        {
+            string query = $"select * from ParkingPass where pass_user_id={userId} limit 1;";
+            List<ParkingPass> passes = new List<ParkingPass>();
+            MySqlCommand command = new MySqlCommand(query, Connection);
+            MySqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                ParkingPassType type;
+                DateTime startDate;
+                DateTime endDate;
+                bool didWork = ParkingPassType.TryParse(reader["pass_type"] + "", out type);
+                bool didWork2 = DateTime.TryParse(reader["pass_start_date"] + "", out startDate);
+                bool didWork3 = DateTime.TryParse(reader["pass_expiration_date"] + "", out endDate);
+                if (didWork & didWork2 & didWork3)
+                {
+                    passes.Add(
+                        new ParkingPass(int.Parse(reader["pass_id"] + ""), type, int.Parse(reader["pass_user_id"] + ""),
+                            DateOnly.FromDateTime(startDate), DateOnly.FromDateTime(endDate)));
+                }
+            }
+            CloseConnection();
+            if (passes.Count > 0)
+            {
+                return passes[0];
+            }
+            else
+            {
+                return null;
+            }
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    public bool CheckIfUserIsAllowed(int userId, Garage garage)
+    {
+        ParkingPass pass = GetUserParkingPass(userId);
+        return garage.AllowedUserTypes.Contains(pass.Type);
+    }
     
 
 }
